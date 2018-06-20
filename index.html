@@ -21,9 +21,23 @@
   }
 </style>
 
-<body>
-  <section>
+<body onload="f();">
+  <section id="content">
     BE YOURSELF UNLESS YOU CAN BE VINITA
   </section>
+  <script type="text/javascript">
+    var f = function() {
+      var sayings = [
+        "BE YOURSELF UNLESS YOU CAN BE VINITA",
+        "VINITA FOR A DAY, KEEPS THE DOCTOR AWAY",
+        "IN VINITA VERITAS",
+        "BETTER VINITA THAN SORRY",
+        "IF YOU CAN'T BEAT VINITA, JOIN HER"
+      ];
+      var content = document.getElementById("content");
+      var i = Math.floor(Math.random() * sayings.length);
+      content.innerHTML = sayings[i];
+    }
+  </script>
 </body>
 </html>
