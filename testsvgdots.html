@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type='text/css'>
+      html, body
+      {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      svg
+      {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none' onClick='onClick()'></svg>
+  </body>
+
+  <script type="text/jscript">
+
+    //generate class
+    var styles = [];
+    for(var x=0;x<100;x++) {
+      for(var y=0;y<100;y++) {
+        styles.push(`.pos-${x}-${y} { transform:translate(${x*10}px,${y*10}px); transition: 2s ease-in-out; }`);
+      }
+    }
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = styles.join(' ')
+    document.getElementsByTagName('head')[0].appendChild(style);
+
+    //generate svg content
+    var svg = document.getElementsByTagName('svg')[0]
+    var dots = []
+    for(var i=0;i<2200;i++) {
+      var r = Math.floor(Math.random() * 255)
+      var g = Math.floor(Math.random() * 255)
+      var b = Math.floor(Math.random() * 255)
+      var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle')
+      circle.setAttributeNS(null, 'r', 5);
+      circle.setAttributeNS(null, 'fill', `rgb(${r},${g},${b})`);
+      circle.id = `${i}`
+      dots.push(circle)
+      svg.appendChild(circle)
+    }
+
+    animate()
+
+    //
+    function onClick()
+    {
+      animate()
+    }
+
+    function animate()
+    {
+      //change css class and therefore position
+      for(var i=0;i<dots.length;i++)
+      {
+        circle = dots[i];
+        var x = Math.floor(Math.random() * 99)
+        var y = Math.floor(Math.random() * 99)
+        var c = `pos-${x}-${y}`
+        circle.className.baseVal = c
+      }
+    }
+
+  </script>
+
+
+
+
+</html>
